@@ -1,0 +1,168 @@
+body{
+    background-color: rgb(250, 166, 250);
+}
+#GridContainer{
+    display:grid;
+    grid-template-columns:auto ;
+    grid-template-rows: auto;
+    grid-template-areas:
+    'left'
+    'left'
+    'left';
+}
+
+#item2{
+    grid-area: left;
+    height: 365px;
+    /*width: 300px;*/
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+div{
+    border: 1.5px solid black;
+}
+
+.slider{
+    grid-area: down;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slides{
+    grid-area: down;
+    width: 500%;
+    height: 300px;
+   display: flex;
+}
+
+.slides input{
+    grid-area: down;
+    display: none;
+}
+
+.slide{
+    grid-area: down;
+    width: 20%;
+    transition: 2s;
+}
+
+.slide img {
+    grid-area: down;
+    width: 20%;
+    height: 200px;
+}
+
+#radio1:checked ~ .first{
+    grid-area: down;
+    margin-left: 0;
+}
+#radio2:checked ~ .first{
+    grid-area: down;
+    margin-left: -20%;
+}
+#radio3:checked ~ .first{
+    grid-area: down;
+
+    margin-left: -40%;
+}
+#radio4:checked ~ .first{
+    grid-area: down;
+
+    margin-left: -60%;
+}
+#radio5:checked ~ .first{
+    grid-area: down;
+
+    margin-left: -80%;
+}
+
+.navigation-auto{
+    grid-area: down;
+    position: absolute;
+    display: flex;
+    width: 15%;
+    justify-content: center;
+    margin-top: 220px;
+}
+.navigation-auto div{
+    grid-area: down;
+    border: 2px solid #54737E;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 2s;
+}
+.navigation-auto div:not(:last-child){
+    grid-area: down;
+    margin-right: 15%;
+}
+#radio1:checked ~ .navigation-auto .auto-btn1{
+    grid-area: down;
+
+    background:#54737E ;
+}
+#radio2:checked ~ .navigation-auto .auto-btn2{
+    grid-area: down;
+
+    background:#54737E ;
+}
+#radio3:checked ~ .navigation-auto .auto-btn3{
+    grid-area: down;
+
+    background:#54737E ;
+}
+#radio4:checked ~ .navigation-auto .auto-btn4{
+    grid-area: down;
+
+    background:#54737E ;
+}
+#radio5:checked ~ .navigation-auto .auto-btn5{
+    grid-area: down;
+    background:#54737E ;
+}
+#radio5:checked ~ .navigation-auto .auto-btn5{
+    grid-area: down;
+    background:#54737E ;
+}
+#radio5:checked ~ .navigation-auto .auto-btn5{
+    grid-area: down;
+    background:#54737E ;
+}
+#radio5:checked ~ .navigation-auto .auto-btn5{
+    grid-area: down;
+    background:#54737E ;
+}
+#radio5:checked ~ .navigation-auto .auto-btn5{
+    grid-area: down;
+    background:#54737E ;
+}
+
+@media screen and (min-width:760px ) {
+    body{
+        background-color: thistle;
+    }
+#GridContainer{
+    display:grid;
+    grid-template-columns:auto ;
+    grid-template-rows: auto;
+    grid-template-areas:
+    'left'
+    'left'
+    'left';
+}
+
+#item2{
+    grid-area: left;
+    height: 550px;
+    /*width: 300px;*/
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+div{
+    border: 1.5px solid black;
+}
+}
+

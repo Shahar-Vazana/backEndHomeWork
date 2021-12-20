@@ -1,0 +1,90 @@
+body{
+    background-color: rgb(250, 166, 250);
+}
+#GridContainer{
+    display:grid;
+    grid-template-columns:auto ;
+    grid-template-rows: auto;
+    grid-template-areas:
+    'header header header'
+    'left main main'
+    'left main main';
+}
+#item1{
+    grid-area: header;
+    height: 150px;
+    /*width: 700px;*/
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+}
+#item2{
+    grid-area: left;
+    height: 365px;
+    /*width: 300px;*/
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+}
+#item3{
+    grid-area: main;
+    height: 365px;
+    /*width: 700px;*/
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100%;
+    background-color: hotpink;
+    border: 2px solid hotpink;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-iteration-count: 10;
+}
+div{
+    border: 1.5px solid black;
+}
+@media screen and (min-width:300px ) {
+    body{
+        background-color: thistle;
+    }
+#GridContainer{
+    display:grid;
+    grid-template-columns:auto ;
+    grid-template-rows: auto;
+    grid-template-areas:
+    'left header header'
+    'left main main'
+    'left main main';
+}
+#item1{
+    grid-area: header;
+    height: 150px;
+    /*width: 700px;*/
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+}
+#item2{
+    grid-area: left;
+    height: 550px;
+    /*width: 300px;*/
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+}
+#item3{
+    grid-area: main;
+    height: 365px;
+    /*width: 700px;*/
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+}
+div{
+    border: 1.5px solid black;
+}
+}
+@keyframes blink{
+    from{background-color: hotpink;}
+    to{background-color: lightblue;}
+}
