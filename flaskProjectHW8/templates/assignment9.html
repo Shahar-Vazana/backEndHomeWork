@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+{% block title %}
+    About
+{% endblock %}
+{% block tochen %}
+    {{ super() }}
+    <meta charset="UTF-8">
+    {% set pageName= 'Forms' %}
+    <h1> Welcome to {{ pageName }} page </h1>
+
+    <h2>Form 1 Search user:</h2>
+    <form action="/assignment9" method="GET">
+        User Name: <input name="name" type="text">
+        <input type="submit">
+    </form>
+    {% if session['name'] %}
+        <ul>
+            {% for user in users %}
+                {% if users[user].name == session['name'] %}
+                    <li> name: {{ users[user].name }}, email: {{ users[user].email }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <ul>
+            {% for user in users %}
+                <li> name: {{ users[user].name }}, email: {{ users[user].email }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <h2>Form 2 registration user:</h2>
+    <h3> Please Log in</h3>
+    <form action="/assignment9" method="POST">
+        User Name: <input name="username" type="text">
+        Password: <input name="password" type="password">
+        <input type="submit">
+    </form>
+
+    {% if session.username %}
+        <h3> Welcome Back, {{ session.username }} !</h3>
+    {% else %}
+    {% endif %}
+
+{% endblock %}
