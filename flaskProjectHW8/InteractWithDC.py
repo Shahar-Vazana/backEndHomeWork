@@ -1,6 +1,9 @@
 import mysql.connector
 
 
+
+
+
 def interact_db(query, query_type: str):
     return_value = False
     connection = mysql.connector.connect(host='localhost',

@@ -7,6 +7,9 @@ app = Flask(__name__)
 app.secret_key = '12345'
 
 
+
+
+
 ## About
 from HW10.assignment10 import assignment10
 app.register_blueprint(assignment10)

@@ -3,6 +3,9 @@ from flask import render_template
 from flask import session
 from InteractWithDC import interact_db
 
+
+
+
 # about blueprint definition
 assignment10 = Blueprint('HW10',
                          __name__,
