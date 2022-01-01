@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+{% block title %}
+    More
+{% endblock %}
+
+{% block tochen %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <b>{{ message }}</b>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1>users page</h1>
+
+    <h3>Insert New Users:</h3>
+    <form action="/Insertuser" method="post">
+        <input type="text" name="name" placeholder="Name">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" name="submit" value="insert">
+    </form>
+
+    <h3>Update User Name:</h3>
+    <form action="/UpdateuserName" method="POST">
+        <input type="text" name="id" placeholder="Id">
+        <input type="text" name="name" placeholder="Name">
+        <input type="submit" name="submit" value="Update"><br>
+    </form>
+    <h3>Update User Email:</h3>
+    <form action="/UpdateuserEmail" method="POST">
+        <input type="text" name="id" placeholder="Id">
+        <input type="email" name="email" placeholder="Email">
+        <input type="submit" name="submit" value="Update">
+    </form>
+
+    <h3>Delete User:</h3>
+    <form action="/deleteusers" method="GET">
+        User ID: <label><input name="id" type="text"></label>
+        {#  <input type="text" name="id" placeholder="Id">#}
+        <input type="submit">
+    </form>
+
+    {#    <h3>users list:</h3>#}
+    {#    <ul>#}
+    {#        {% for user in users %}#}
+    {#            <li> <form action="/deleteusers" method="post" style="display:inline">#}
+    {#                <input type="hidden" name="id" value="{{ user.id }}">#}
+    {#                <input type="submit" value="delete">#}
+    {#            </form> {{ user.name }}, email: {{ user.email }}</li>#}
+    {#        {% endfor %}#}
+    {#    </ul>#}
+
+    <h3>users list:</h3>
+    {% if users %}
+        <ul>
+            {% for user in users %}
+                <li> Id: {{ user.id }} || User Name: {{ user.name }} || Email: {{ user.email }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

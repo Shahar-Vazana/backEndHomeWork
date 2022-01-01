@@ -1,10 +1,16 @@
 from flask import Flask, redirect, url_for, request
 from flask import render_template
 from flask import session
-
+from InteractWithDC import interact_db
 
 app = Flask(__name__)
 app.secret_key = '12345'
+
+
+## About
+from HW10.assignment10 import assignment10
+app.register_blueprint(assignment10)
+
 
 @app.route('/logout')
 def logout():
@@ -14,7 +20,6 @@ def logout():
 
 @app.route('/assignment9', methods=['GET', 'POST'])
 def assig9():
-
     if request.method == 'GET':
         if 'name' in request.args:
             name = request.args['name']
@@ -88,3 +93,30 @@ def CV():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# ## About
+# from HW10.assignment10 import assignment10
+# app.register_blueprint(assignment10)
+
+#
+# def get_pockemons(num=3):
+#     pockemons = []
+#     for i in range(num):
+#         random_n = rum
+#
+#     res= request.get(url='https://pokeapi.co/api/v2/pokemon/1')
+#     res= res.json()
+#     return res
+#
+#
+# @app.route('/req_backend')
+# def backend():
+#     pockemons=get_pockemons()
+#     return render_template('req_backend.html', pockemons=pockemons)
+#
+#
+# @app.route('/req_frontend')
+# def frontend():
+#     return render_template('req_frontend.html')
+#
+#
