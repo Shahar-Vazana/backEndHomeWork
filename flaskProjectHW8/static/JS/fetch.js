@@ -1,28 +1,32 @@
-console.log('inside fetch JS file');
+console.log('inside fetch js file');
+
 
 function myFunction() {
-    console.log('clicked')
-    fetch('https://reqres.in/api/users?page=2').then(
-        response => response.json() //להמיר לג'ייסון טהור
+    // console.log('clicked');
+    let number= document.getElementById("front_number")
+    fetch('https://reqres.in/api/users/'+number.value).then(
+        response => response.json()
     ).then(
-        // response_obj => console.log(response_obj)
-        response_obj => put_users_inside_html(response_obj.data)
+        (response_obj) => {
+            return put_users_inside_html(response_obj.data)
+        }
     ).catch(
         error => console.log(error)
     )
 }
 
-function put_users_inside_html(response_obj){
-    const currMain = document.querySelector(selectors:"main");
-    for (let user of response_obj){
-        const section = document.createElement(tagName:'section');
-        section.innerHTML= `
-            <img src="${user.avatar}" alt="profile pic"/>
-            <div>
-                <span> ${user.first_name} ${user.last_name}</span> <br>
-                <a href="mailto:${user.email}"> Send Email </a>
+function put_users_inside_html(response_obj) {
+    const curr_main = document.querySelector("main");
+        const section = document.createElement('section');
+        curr_main.innerHTML = `
+            <img src="${response_obj.avatar}" alt="Profile Picture"/>
+            <div> 
+                <span>${response_obj.name}</span>
+                <br>
+                <a href="mailto:${response_obj.email}">Send Email</a>
             </div>
             `;
-    }
-}
+    // curr_main.appendChild(section);
 
+
+}

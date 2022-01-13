@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Req Backend
+{% endblock %}
+
+{% block tochen %}
+    {{ super() }}
+    <meta charset="UTF-8">
+    {% set pageName= 'Req Backend' %}
+    <h1> Welcome to {{ pageName }} page </h1>
+    <h2>users:</h2>
+    <form action="/req_backend">
+        user id: <input type="number" name="id_number">
+        <input type="submit" value="Get User">
+    </form>
+    <br>
+
+    {% if users %}
+        {% for user in users %}
+            <img src="{{ user.avatar }}" alt="Profile Picture"/>
+            <h3>user: {{ user.id }} </h3>
+            <h4>Name: {{ user.first_name }} {{ user.last_name }} </h4>
+            <h4>Email: {{ user.email }}</h4>
+            <hr>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

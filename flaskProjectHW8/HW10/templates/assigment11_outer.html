@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Req Frontend
+{% endblock %}
+
+{% block tochen %}
+    {{ super() }}
+    {% set pageName= 'Req Frontend' %}
+    <h1> Welcome to {{ pageName }} page </h1>
+
+    <h2>user id: <input type="number" name="number" id="front_number">  </h2>
+    <button onclick="myFunction()">Get Users</button>
+
+    <script src="/static/JS/fetch.js" ></script>
+
+    <h2>users:</h2>
+    <form action="/assigment11/outer_source">
+        user id: <input type="number" name="number" id="back_number">
+        <input type="submit" value="Get User">
+    </form>
+    <br>
+    <main>
+        {%  if user %}
+            <img src="{{ user.avatar }}" alt="Profile Picture"/>
+            <div>
+                <span>{{ user.name }}</span>
+                <br>
+                <a href="malito:{{ user.email }}">send email</a>
+            </div>
+        {% endif %}
+    </main>
+
+
+{% endblock %}

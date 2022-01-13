@@ -2,12 +2,47 @@ from flask import Flask, redirect, url_for, request
 from flask import render_template
 from flask import session
 from InteractWithDC import interact_db
+from flask import request
+import requests
+import random
 
 app = Flask(__name__)
 app.secret_key = '12345'
 
-
-
+#
+# @app.route('/req_frontend')
+# def myFunction():
+#     return render_template('req_frontend.html')
+#
+#
+# # def get_pockemons(num=3):
+# #     pockemons = []
+# #     for i in range(num):
+# #         random_n = random.randint(1, 100)
+# #         res = requests.get(url=f'https://pokeapi.co/api/v2/pokemon/{random_n}')
+# #         res = res.json()
+# #         pockemons.append(res)
+# #     return pockemons
+#
+# def get_pockemons(num):
+#     pokemons = []
+#     for i in range(num):
+#         random_n = random.randint(1, 100)
+#         res = requests.get(f'https://pokeapi.co/api/v2/pokemon/{random_n}')
+#         # res = requests.get('https://pokeapi.co/api/v2/pokemon/%s' % random_n)
+#         res = res.json()
+#         pokemons.append(res)
+#     return pokemons
+#
+#
+# @app.route('/req_backend')
+# def req_backend_func():
+#     num = 3
+#     if "number" in request.args:
+#         num = int(request.args['number'])
+#     pockemons = get_pockemons(num)
+#     return render_template('req_backend.html', pockemons=pockemons)
+#
 
 
 ## About

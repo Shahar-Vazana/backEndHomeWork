@@ -1,10 +1,11 @@
-from flask import Flask, redirect, url_for, request, Blueprint, flash
+import mysql
+import requests
+import random
+from flask import Flask, redirect, url_for, request, Blueprint, flash, jsonify
 from flask import render_template
 from flask import session
+from flask import jsonify
 from InteractWithDC import interact_db
-
-
-
 
 # about blueprint definition
 assignment10 = Blueprint('HW10',
@@ -15,6 +16,60 @@ assignment10 = Blueprint('HW10',
 
 
 # Routes
+
+
+@assignment10.route('/assigment11/outer_source', methods=['GET'])
+def assignment11_func():
+    if 'number' in request.args:
+        number = request.args['number']
+        req = requests.get(url=f"https://reqres.in/api/users/{number}")
+        req = req.json()
+        return render_template('assigment11_outer.html', user=req['data'])
+    # user_id = request.args['number']
+    return render_template('assigment11_outer.html')
+
+
+# def get_pockemons(num=3):
+#     pockemons = []
+#     for i in range(num):
+#         random_n = random.randint(1, 100)
+#         res = requests.get(url=f'https://pokeapi.co/api/v2/pokemon/{random_n}')
+#         res = res.json()
+#         pockemons.append(res)
+#     return pockemons
+
+# def get_users(x):
+#     users = []
+#     res = requests.get(f'https://reqres.in/api/users/{x}')
+#     # res = requests.get('https://reqres.in/api/users/%s' % x)
+#     res = res.json()
+#     users.append(res)
+#     return users
+#
+#
+# @assignment10.route('/req_backend')
+# def req_backend_func():
+#     x = 3
+#     if "number" in request.args:
+#         x = int(request.args['number'])
+#     users = get_users(x)
+#     return render_template('req_backend.html', users=users)
+#
+
+@assignment10.route('/assignment11/users')
+def get_users_func():
+    return_dict = {}
+    query = 'select * from users;'
+    users = interact_db(query=query, query_type='fetch')
+    for user in users:
+        return_dict[f'user_{user.id}'] = {
+            'status': 'success',
+            'name': user.name,
+            'email': user.email,
+        }
+    return jsonify(return_dict)
+
+
 @assignment10.route('/assignment10')
 def index():
     query = "select * from users"
@@ -75,9 +130,109 @@ def usersInsert():
     flash(f' user added!', 'success')
     return redirect('/assignment10')
 
-
 # @assignment10.route('/users')
 # def users():
 #     query = "select * from users"
 #     query_result = interact_db(query=query, query_type='fetch')
 #     return render_template('assignment10.html', users=query_result)
+
+
+
+# query = "select * from users"
+# userss = interact_db(query=query, query_type='fetch')
+# users_dict = {}
+# users_array = [len(users)]
+# # if len(users) == 0:
+# #     return_dict = {
+# #         'status': 'failed',
+# #         'message': 'user not found'
+# #     }
+# # else:
+# for u in users:
+#     users_array[u] = '1'
+#     # users_array[u] = users_dict.update({
+#     #     'id': users[u].id,
+#     #     'name': users[u].name,
+#     #     'email': users[u].email})
+#
+# return jsonify(users_array)
+
+
+# @assignment10.route('/users')
+# def users_func():
+#     query = 'select * from users;'
+#     users = interact_db(query=query, query_type='fetch')
+#     return f'{users}'
+
+
+#
+# def connector(query, query_type: str):
+#     return_value = False
+#     db = mysql.connector.connect(host="localhost",
+#                                  user="root",
+#                                  passwd="root",
+#                                  database="web_database")
+#
+#     cursor = db.cursor(named_tuple=True)
+#     cursor.execute(query)
+#
+#     if query_type == 'commit':
+#         db.commit()
+#         return_value = True
+#     if query_type == 'fetch':
+#         query_result = cursor.fetchall()
+#         return_value = query_result
+#     db.close()
+#     cursor.close()
+#     return return_value
+#
+#
+# @assignment10.route("/assignment11/users", methods=["GET"])
+# def users():
+#     # if request.method == 'GET':
+#     result = connector("SELECT * FROM users", query_type="fetch")
+#     if len(result) == 0:
+#         return jsonify({
+#             'success': 'False: User not found',
+#             "data": []
+#         })
+#     else:
+#         return jsonify({
+#             'success': 'True: User found',
+#             "data": result
+#         })
+#
+
+# @assignment10.route('/db_users', defaults={'user_id': -1, 'orders': 'my orders'})
+# @assignment10.route('/db_users/<int:user_id>', defaults={'orders': 'my orders'})
+# @assignment10.route('/db_users/<int:user_id>/<orders>')
+# def get_users_func(user_id, orders):
+#     if user_id == -1:
+#         return_dict = {}
+#         query = 'select * from users;'
+#         users = interact_db(query=query, query_type='fetch')
+#         for user in users:
+#             return_dict[f'user_{user.id}'] = {
+#                 'status': 'success',
+#                 'name': user.name,
+#                 'email': user.email,
+#             }
+#     else:
+#         query = 'select * from users where id=%s;' % user_id
+#         users = interact_db(query=query, query_type='fetch')
+#         # print(type(user_id))
+#         if len(users) == 0:
+#             return_dict = {
+#                 'status': 'failed',
+#                 'message': 'user not found'
+#             }
+#         else:
+#             return_dict = {
+#                 'status': 'success',
+#                 'id': users[0].id,
+#                 'name': users[0].name,
+#                 'email': users[0].email,
+#                 'orders': orders,
+#             }
+#     return jsonify(return_dict)
+#
